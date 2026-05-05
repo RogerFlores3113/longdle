@@ -314,3 +314,59 @@ html.colorblind {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/* ───────── Stats modal histogram (D-10, D-11) ───────── */
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.stats-label {
+  font-size: 12px;
+  font-weight: 600;
+  width: 16px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.stats-bar {
+  height: 24px;
+  min-width: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-inverse);
+  background: var(--color-surface);
+  box-sizing: border-box;
+}
+
+.stats-bar--highlight {
+  background: var(--color-correct);
+}
+
+/* ───────── Share button (D-04) ───────── */
+
+.share-btn {
+  display: block;
+  width: 100%;
+  height: 48px;
+  background: var(--color-correct);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.share-btn:active {
+  opacity: 0.85;
+}
