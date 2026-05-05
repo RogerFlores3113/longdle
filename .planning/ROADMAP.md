@@ -45,8 +45,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User sees the how-to-play modal automatically on first visit and can open it again via the header help icon
   4. User can enable hard mode (locked hints must be reused) and colorblind mode (orange/blue palette) via a settings modal, with preferences stored in localStorage
   5. A no-op WinAnimation component slot exists in the EndGame modal, documented and ready for v3 red panda integration
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 7 plans
+  - [ ] 02-01-PLAN.md — TDD generateShareText pure function (share lib + tests)
+  - [ ] 02-02-PLAN.md — Settings store extension (hasSeenHowToPlay) + colorblind CSS override
+  - [ ] 02-03-PLAN.md — Inline SVG icon components (HelpIcon, StatsIcon, SettingsIcon) + Modal wrapper
+  - [ ] 02-04-PLAN.md — HowToPlayModal, StatsModal, SettingsModal, WinAnimation stub
+  - [ ] 02-05-PLAN.md — EndGameModal (primary share CTA + WinAnimation slot)
+  - [ ] 02-06-PLAN.md — CopyFallbackModal (clipboard .catch path)
+  - [ ] 02-07-PLAN.md — App.tsx integration + header evolution + EndGameBanner deletion + smoke checkpoint
 
 ### Phase 3: Polish + Deploy
 **Goal**: The game looks and feels like a natural extension of the owner's personal site — dark green jungle theme, smooth CSS animations, mobile-responsive layout — and is live on Vercel under a personal site subdomain
@@ -69,5 +75,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete | 2026-05-05 |
-| 2. Features | 0/TBD | Not started | - |
+| 2. Features | 0/7 | Not started | - |
 | 3. Polish + Deploy | 0/TBD | Not started | - |
