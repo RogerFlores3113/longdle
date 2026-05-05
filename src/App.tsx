@@ -1,8 +1,21 @@
+import { Board } from './components/Board'
+import { Keyboard } from './components/Keyboard'
+import { Toast } from './components/Toast'
+import { EndGameBanner } from './components/EndGameBanner'
+import { useKeyboardListener } from './hooks/useKeyboardListener'
+
 function App() {
+  useKeyboardListener()
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50">
-      <h1 className="text-2xl font-semibold text-gray-900">Longdle</h1>
-    </main>
+    <div className="app">
+      <header className="app__header">Longdle</header>
+      <main className="app__main">
+        <Board />
+        <EndGameBanner />
+        <Keyboard />
+      </main>
+      <Toast />
+    </div>
   )
 }
 
