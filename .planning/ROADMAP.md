@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   - [x] 01-01-PLAN.md — Bootstrap Vite + React 19 + TS + Tailwind v4 + Vitest scaffold
   - [x] 01-02-PLAN.md — Curate ANSWERS + VALID_GUESSES from hello-wordl, emit src/data/words.ts
   - [x] 01-03-PLAN.md — TDD pure libs: scoring (two-pass), wordSelection (UTC), hardMode, storage
-  - [ ] 01-04-PLAN.md — Zustand stores (useGame + useSettings) with persist + physical keyboard listener
+  - [x] 01-04-PLAN.md — Zustand stores (useGame + useSettings) with persist + physical keyboard listener
   - [ ] 01-05-PLAN.md — UI shell (Board/Row/Tile/Keyboard/Key/Toast/EndGameBanner) + wire-up + smoke checkpoint
 
 ### Phase 2: Features
@@ -68,6 +68,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 3/5 | In progress | - |
+| 1. Foundation | 4/5 | In progress | - |
 | 2. Features | 0/TBD | Not started | - |
 | 3. Polish + Deploy | 0/TBD | Not started | - |
