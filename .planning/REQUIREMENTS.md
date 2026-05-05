@@ -25,10 +25,10 @@
 
 ### Word List
 
-- [ ] **WORDS-01**: The answer list (~1,000–2,000 words) is sourced from a public 6-letter word corpus (e.g., filtered from cfreshman's Wordle lists or equivalent), then hand-curated to remove plurals, proper nouns, obscure words, and words not conforming to Wordle-style curation philosophy
-- [ ] **WORDS-02**: A broader valid-guess list (~8,000–15,000 words) exists for guess validation; it includes the answer list plus common 6-letter words
-- [ ] **WORDS-03**: The answer list is NOT sorted alphabetically in source (sorting would leak upcoming words to anyone reading the bundle)
-- [ ] **WORDS-04**: The answer list cycles deterministically — each day maps to exactly one word, and the same word does not repeat until the full list is exhausted
+- [x] **WORDS-01**: The answer list (~1,000–2,000 words) is sourced from a public 6-letter word corpus (e.g., filtered from cfreshman's Wordle lists or equivalent), then hand-curated to remove plurals, proper nouns, obscure words, and words not conforming to Wordle-style curation philosophy
+- [x] **WORDS-02**: A broader valid-guess list (~8,000–15,000 words) exists for guess validation; it includes the answer list plus common 6-letter words
+- [x] **WORDS-03**: The answer list is NOT sorted alphabetically in source (sorting would leak upcoming words to anyone reading the bundle)
+- [x] **WORDS-04**: The answer list cycles deterministically — each day maps to exactly one word, and the same word does not repeat until the full list is exhausted
 
 ### Sharing & Stats
 
@@ -112,10 +112,10 @@
 | DAILY-03 | Phase 1 | Pending |
 | DAILY-04 | Phase 1 | Pending |
 | DAILY-05 | Phase 1 | Pending |
-| WORDS-01 | Phase 1 | Pending |
-| WORDS-02 | Phase 1 | Pending |
-| WORDS-03 | Phase 1 | Pending |
-| WORDS-04 | Phase 1 | Pending |
+| WORDS-01 | Phase 1 | Complete (01-02) |
+| WORDS-02 | Phase 1 | Complete (01-02) |
+| WORDS-03 | Phase 1 | Complete (01-02) |
+| WORDS-04 | Phase 1 | Complete (01-02) |
 | SHARE-01 | Phase 2 | Pending |
 | SHARE-02 | Phase 2 | Pending |
 | SHARE-03 | Phase 2 | Pending |
