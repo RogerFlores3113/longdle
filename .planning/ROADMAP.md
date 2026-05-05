@@ -13,7 +13,7 @@ Three phases deliver a complete, playable daily 6-letter Wordle clone. Phase 1 b
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Data layer, algorithms, useGame hook — game is fully playable
-- [ ] **Phase 2: Features** - Modals, sharing, stats, settings, accessibility, v3 stub
+- [x] **Phase 2: Features** - Modals, sharing, stats, settings, accessibility, v3 stub
 - [ ] **Phase 3: Polish + Deploy** - Theme, CSS animations, mobile polish, Vercel deploy
 
 ## Phase Details
@@ -75,5 +75,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete | 2026-05-05 |
-| 2. Features | 7/7 | In Progress | - |
+| 2. Features | 7/7 | Complete | 2026-05-05 |
 | 3. Polish + Deploy | 0/TBD | Not started | - |
