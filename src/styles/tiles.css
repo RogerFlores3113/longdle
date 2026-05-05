@@ -370,3 +370,37 @@ html.colorblind {
 .share-btn:active {
   opacity: 0.85;
 }
+
+/* ───────── EndGame modal (D-03, D-21) ───────── */
+
+.endgame-modal__result {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.endgame-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.see-stats-btn {
+  display: block;
+  width: 100%;
+  height: 48px;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.see-stats-btn:active {
+  opacity: 0.85;
+}
