@@ -142,6 +142,10 @@ export const useGame = create<GameState>()(
             currentGuess: '',
             keyStatuses: nextKeyStatuses,
             gameStatus,
+            // WR-05: lock input immediately on game end so a rapid double-tap on Enter
+            // cannot re-enter onKey before React re-renders with the new gameStatus.
+            // The isAnimating guard at the top of onKey will block the second call.
+            isAnimating: gameStatus !== 'playing',
           })
 
           if (gameStatus !== 'playing') {
