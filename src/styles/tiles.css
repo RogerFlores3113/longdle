@@ -1,0 +1,191 @@
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f3f4f6;
+  --color-correct: #6aaa64;
+  --color-present: #c9b458;
+  --color-absent: #787c7e;
+  --color-border: #d3d6da;
+  --color-text: #1a1a1b;
+  --color-text-inverse: #ffffff;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ───────── Board / Row / Tile ───────── */
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.row--shake {
+  /* Phase 3 will define @keyframes shake. Class is plumbed but inert in Phase 1. */
+}
+
+.row--win {
+  /* Phase 3 will define @keyframes bounce. */
+}
+
+.tile {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  border: 2px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.tile--empty {
+  /* default — border only, no fill */
+}
+
+.tile--active {
+  border-color: var(--color-text);
+}
+
+.tile--correct {
+  background: var(--color-correct);
+  border-color: var(--color-correct);
+  color: var(--color-text-inverse);
+}
+
+.tile--present {
+  background: var(--color-present);
+  border-color: var(--color-present);
+  color: var(--color-text-inverse);
+}
+
+.tile--absent {
+  background: var(--color-absent);
+  border-color: var(--color-absent);
+  color: var(--color-text-inverse);
+}
+
+/* ───────── Keyboard / Key ───────── */
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  align-items: center;
+}
+
+.keyboard__row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: center;
+}
+
+.key {
+  height: 56px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.key--wide {
+  width: 64px;
+  font-size: 12px;
+}
+
+.key--correct {
+  background: var(--color-correct);
+  color: var(--color-text-inverse);
+}
+
+.key--present {
+  background: var(--color-present);
+  color: var(--color-text-inverse);
+}
+
+.key--absent {
+  background: var(--color-absent);
+  color: var(--color-text-inverse);
+}
+
+/* ───────── Toast ───────── */
+
+.toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* ───────── App shell ───────── */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app__header {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+  box-sizing: border-box;
+}
+
+.app__main {
+  flex: 1;
+  padding: 32px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.endgame {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 16px;
+  text-align: center;
+}
