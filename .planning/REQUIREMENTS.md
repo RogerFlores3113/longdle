@@ -11,14 +11,14 @@
 ### Core Game Loop
 
 - [ ] **GAME-01**: User can see a 6×7 grid (6 letter columns, 7 guess rows) with the active row visually highlighted
-- [ ] **GAME-02**: User receives color-coded tile feedback on submission — green (correct position), yellow (wrong position), gray (not in word) — using a two-pass algorithm that correctly handles duplicate letters
+- [x] **GAME-02**: User receives color-coded tile feedback on submission — green (correct position), yellow (wrong position), gray (not in word) — using a two-pass algorithm that correctly handles duplicate letters
 - [ ] **GAME-03**: User can interact with an on-screen keyboard whose keys update to show the best color state seen (green > yellow > gray; never downgrade from green)
 - [ ] **GAME-04**: User can type letters using the physical keyboard (A-Z, Backspace/Delete, Enter) without a native `<input>` element capturing focus
 
 ### Daily Word Mechanic
 
-- [ ] **DAILY-01**: The daily word is deterministically selected from a curated answer list using UTC-based day-index arithmetic off a fixed epoch (2026-05-04), requiring no server
-- [ ] **DAILY-02**: The day-index calculation uses `Date.UTC()` exclusively — never `new Date()` local time — so both players always receive the same puzzle regardless of timezone
+- [x] **DAILY-01**: The daily word is deterministically selected from a curated answer list using UTC-based day-index arithmetic off a fixed epoch (2026-05-04), requiring no server
+- [x] **DAILY-02**: The day-index calculation uses `Date.UTC()` exclusively — never `new Date()` local time — so both players always receive the same puzzle regardless of timezone
 - [ ] **DAILY-03**: User sees a win message on correct guess or the answer revealed on loss (after 7 failed attempts), with all input disabled afterward
 - [ ] **DAILY-04**: User receives shake animation on the active row and a brief toast notification for invalid guesses ("Not in word list", "Not enough letters")
 - [ ] **DAILY-05**: User's in-progress game state persists in localStorage and is restored on page refresh — they resume exactly where they left off
@@ -104,11 +104,11 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | GAME-01 | Phase 1 | Pending |
-| GAME-02 | Phase 1 | Pending |
+| GAME-02 | Phase 1 | Complete (01-03) |
 | GAME-03 | Phase 1 | Pending |
 | GAME-04 | Phase 1 | Pending |
-| DAILY-01 | Phase 1 | Pending |
-| DAILY-02 | Phase 1 | Pending |
+| DAILY-01 | Phase 1 | Complete (01-03) |
+| DAILY-02 | Phase 1 | Complete (01-03) |
 | DAILY-03 | Phase 1 | Pending |
 | DAILY-04 | Phase 1 | Pending |
 | DAILY-05 | Phase 1 | Pending |
