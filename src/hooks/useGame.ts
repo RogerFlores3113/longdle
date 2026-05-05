@@ -55,8 +55,18 @@ export interface SettingsState {
 }
 
 // Module-scoped timers (one instance per store)
+// dev-only: timer refs survive HMR; acceptable for a two-person game.
+// In production this is safe — there is exactly one Zustand store instance.
+// HMR disposal clears pending timers so stale set() calls do not fire after reload.
 let toastTimer: ReturnType<typeof setTimeout> | null = null
 let shakeTimer: ReturnType<typeof setTimeout> | null = null
+
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => {
+    if (toastTimer) clearTimeout(toastTimer)
+    if (shakeTimer) clearTimeout(shakeTimer)
+  })
+}
 
 export const useGame = create<GameState>()(
   persist(
