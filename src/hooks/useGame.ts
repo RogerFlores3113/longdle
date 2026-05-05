@@ -48,8 +48,10 @@ export interface SettingsState {
   version: number
   hardMode: boolean
   colorblindMode: boolean
+  hasSeenHowToPlay: boolean           // D-12: first-visit detection
   setHardMode: (v: boolean) => void
   setColorblindMode: (v: boolean) => void
+  setHasSeenHowToPlay: (v: boolean) => void  // D-12
 }
 
 // Module-scoped timers (one instance per store)
@@ -230,8 +232,10 @@ export const useSettings = create<SettingsState>()(
       version: SCHEMA_VERSION,
       hardMode: false,
       colorblindMode: false,
+      hasSeenHowToPlay: false,                          // D-12: default false for first-visit detection
       setHardMode: (v: boolean) => set({ hardMode: v }),
       setColorblindMode: (v: boolean) => set({ colorblindMode: v }),
+      setHasSeenHowToPlay: (v: boolean) => set({ hasSeenHowToPlay: v }),
     }),
     {
       name: SETTINGS_KEY,
