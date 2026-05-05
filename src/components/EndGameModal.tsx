@@ -13,13 +13,15 @@ interface EndGameModalProps {
 export function EndGameModal({ onClose, onShowStats, onCopyFallback, onShareSuccess }: EndGameModalProps) {
   const gameStatus = useGame((s) => s.gameStatus)
   const getAnswer = useGame((s) => s.getAnswer)
+  const dayIndex = useGame((s) => s.dayIndex)
+  const guessCount = useGame((s) => s.guesses.length)
 
   // CRITICAL (iOS Safari — CLAUDE.md §"Clipboard (iOS Safari)"):
   // No async keyword, no await before writeText.
   // generateShareText is synchronous; writeText is called synchronously in the same gesture.
   // .then() and .catch() fire after the call — iOS gesture context already captured.
   function handleShare() {
-    const { guesses, dayIndex } = useGame.getState()
+    const { guesses } = useGame.getState()
     const { colorblindMode } = useSettings.getState()
     const text = generateShareText(guesses, dayIndex, colorblindMode)
     navigator.clipboard.writeText(text)
@@ -38,9 +40,9 @@ export function EndGameModal({ onClose, onShowStats, onCopyFallback, onShareSucc
       {/* D-21: WinAnimation slot — renders null in Phase 2; v3 replaces with red panda animation */}
       {won && (
         <WinAnimation
-          dayIndex={useGame.getState().dayIndex}
+          dayIndex={dayIndex}
           won={true}
-          guessCount={useGame.getState().guesses.length}
+          guessCount={guessCount}
         />
       )}
       <div className="endgame-modal__actions">
