@@ -10,7 +10,7 @@
 
 ### Core Game Loop
 
-- [ ] **GAME-01**: User can see a 6×7 grid (6 letter columns, 7 guess rows) with the active row visually highlighted
+- [x] **GAME-01**: User can see a 6×7 grid (6 letter columns, 7 guess rows) with the active row visually highlighted
 - [x] **GAME-02**: User receives color-coded tile feedback on submission — green (correct position), yellow (wrong position), gray (not in word) — using a two-pass algorithm that correctly handles duplicate letters
 - [x] **GAME-03**: User can interact with an on-screen keyboard whose keys update to show the best color state seen (green > yellow > gray; never downgrade from green)
 - [x] **GAME-04**: User can type letters using the physical keyboard (A-Z, Backspace/Delete, Enter) without a native `<input>` element capturing focus
@@ -103,7 +103,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| GAME-01 | Phase 1 | Pending |
+| GAME-01 | Phase 1 | Complete (01-05) |
 | GAME-02 | Phase 1 | Complete (01-03) |
 | GAME-03 | Phase 1 | Complete (01-04) |
 | GAME-04 | Phase 1 | Complete (01-04) |

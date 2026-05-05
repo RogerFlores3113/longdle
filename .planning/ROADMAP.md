@@ -12,7 +12,7 @@ Three phases deliver a complete, playable daily 6-letter Wordle clone. Phase 1 b
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Data layer, algorithms, useGame hook — game is fully playable
+- [x] **Phase 1: Foundation** - Data layer, algorithms, useGame hook — game is fully playable
 - [ ] **Phase 2: Features** - Modals, sharing, stats, settings, accessibility, v3 stub
 - [ ] **Phase 3: Polish + Deploy** - Theme, CSS animations, mobile polish, Vercel deploy
 
@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   - [x] 01-02-PLAN.md — Curate ANSWERS + VALID_GUESSES from hello-wordl, emit src/data/words.ts
   - [x] 01-03-PLAN.md — TDD pure libs: scoring (two-pass), wordSelection (UTC), hardMode, storage
   - [x] 01-04-PLAN.md — Zustand stores (useGame + useSettings) with persist + physical keyboard listener
-  - [ ] 01-05-PLAN.md — UI shell (Board/Row/Tile/Keyboard/Key/Toast/EndGameBanner) + wire-up + smoke checkpoint
+  - [x] 01-05-PLAN.md — UI shell (Board/Row/Tile/Keyboard/Key/Toast/EndGameBanner) + wire-up + smoke checkpoint
 
 ### Phase 2: Features
 **Goal**: All social and settings features work — players can share emoji grids, view lifetime stats, configure hard mode and colorblind mode, and get onboarded via a how-to-play modal
@@ -68,6 +68,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 4/5 | In progress | - |
+| 1. Foundation | 5/5 | Complete | 2026-05-05 |
 | 2. Features | 0/TBD | Not started | - |
 | 3. Polish + Deploy | 0/TBD | Not started | - |
