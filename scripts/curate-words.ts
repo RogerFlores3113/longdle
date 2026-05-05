@@ -14,6 +14,11 @@ const ROOT = resolve(__dirname, '..')
 
 const SIX_LETTER = /^[a-z]{6}$/
 const SHUFFLE_SEED = 'longdle-2026-05-04'
+// Cap ANSWERS to the top N most-frequent 6-letter words from the targets list.
+// targets.json is ordered by Peter Norvig word frequency (most common first).
+// Taking the top 1,800 ensures curated, common words suitable for daily answers.
+// Full corpus has ~4,561 six-letter entries; the tail is obscure (e.g. "spinor", "naevus").
+const ANSWERS_CAP = 1800
 
 function loadJsonArray(path: string): string[] {
   const raw = JSON.parse(readFileSync(path, 'utf8'))
@@ -48,7 +53,8 @@ function shuffle<T>(arr: T[], seed: string): T[] {
 const targetsRaw = loadJsonArray(resolve(ROOT, 'scripts/raw/targets.json'))
 const dictionaryRaw = loadJsonArray(resolve(ROOT, 'scripts/raw/dictionary.json'))
 
-const targetsFiltered = filterSixLetter(targetsRaw)
+// Preserve frequency order when filtering targets (Norvig frequency list, most common first)
+const targetsFiltered = filterSixLetter(targetsRaw).slice(0, ANSWERS_CAP)
 const dictionaryFiltered = filterSixLetter(dictionaryRaw)
 
 // D-03: VALID_GUESSES MUST be a superset of ANSWERS.
