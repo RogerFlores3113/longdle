@@ -10,7 +10,7 @@ import { CopyFallbackModal } from './components/CopyFallbackModal'
 import { HelpIcon } from './components/icons/HelpIcon'
 import { StatsIcon } from './components/icons/StatsIcon'
 import { SettingsIcon } from './components/icons/SettingsIcon'
-import { useGame, useSettings } from './hooks/useGame'
+import { useGame, useSettings, showGameToast } from './hooks/useGame'
 import { useKeyboardListener } from './hooks/useKeyboardListener'
 import { generateShareText } from './lib/share'
 
@@ -21,7 +21,6 @@ function App() {
 
   const [activeModal, setActiveModal] = useState<ActiveModal>(null)
   const [copyFallbackText, setCopyFallbackText] = useState('')
-  const [shareToast, setShareToast] = useState(false)
 
   const gameStatus = useGame((s) => s.gameStatus)
   const { colorblindMode, hasSeenHowToPlay, setHasSeenHowToPlay } = useSettings()
@@ -52,8 +51,9 @@ function App() {
   }
 
   function handleShareSuccess() {
-    setShareToast(true)
-    setTimeout(() => setShareToast(false), 1500)
+    // WR-04: route through the single game-store toast mechanism instead of
+    // a parallel shareToast state with its own unstyled div.
+    showGameToast('Copied to clipboard!')
   }
 
   function handleCopyFallback(text: string) {
@@ -106,9 +106,6 @@ function App() {
         <Keyboard />
       </main>
       <Toast />
-      {shareToast && (
-        <div className="toast" style={{ top: 80 }}>Copied to clipboard!</div>
-      )}
       {activeModal === 'howToPlay' && (
         <HowToPlayModal onClose={closeModal} />
       )}

@@ -221,6 +221,13 @@ function showToast(msg: string, set: (partial: Partial<GameState>) => void): voi
   }, TOAST_MS)
 }
 
+// WR-04: exported toast trigger so callers outside the store (e.g. App.tsx share handler)
+// can surface messages through the single <Toast /> component instead of maintaining
+// a parallel toast state with its own div.
+export function showGameToast(msg: string): void {
+  showToast(msg, useGame.setState)
+}
+
 // Shake helper — D-09: increment rowShakeKey to retrigger CSS class via React key prop
 function triggerShake(
   set: (partial: Partial<GameState>) => void,
