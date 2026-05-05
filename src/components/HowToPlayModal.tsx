@@ -2,9 +2,9 @@ import { Modal } from './Modal'
 
 export function HowToPlayModal({ onClose }: { onClose: () => void }) {
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} ariaLabelledBy="howtoplay-title">
       <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
-      <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 16px' }}>
+      <h2 id="howtoplay-title" style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 16px' }}>
         How To Play
       </h2>
       <p style={{ fontSize: 16, lineHeight: 1.5, margin: '0 0 16px' }}>

@@ -7,9 +7,9 @@ export function SettingsModal({ onClose }: { onClose: () => void }) {
   const hardModeDisabled = guesses.length > 0
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} ariaLabelledBy="settings-title">
       <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
-      <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 8px' }}>
+      <h2 id="settings-title" style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 8px' }}>
         Settings
       </h2>
       <div>

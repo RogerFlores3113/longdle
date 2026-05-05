@@ -15,9 +15,9 @@ export function CopyFallbackModal({ copyText, onClose }: CopyFallbackModalProps)
   }, [])
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} ariaLabelledBy="copy-fallback-title">
       <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
-      <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 12px' }}>
+      <h2 id="copy-fallback-title" style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 12px' }}>
         Copy to share
       </h2>
       <p style={{ fontSize: 16, margin: '0 0 12px' }}>

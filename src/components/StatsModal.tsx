@@ -20,9 +20,9 @@ export function StatsModal({ onClose, onShare }: { onClose: () => void; onShare:
   const highlightIndex = gameStatus === 'won' ? guesses.length - 1 : -1
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} ariaLabelledBy="stats-title">
       <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
-      <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 16px' }}>
+      <h2 id="stats-title" style={{ textAlign: 'center', fontSize: 24, fontWeight: 600, margin: '0 0 16px' }}>
         Statistics
       </h2>
       <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: 32 }}>

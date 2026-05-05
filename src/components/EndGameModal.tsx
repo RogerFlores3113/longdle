@@ -32,7 +32,7 @@ export function EndGameModal({ onClose, onShowStats, onCopyFallback, onShareSucc
   const won = gameStatus === 'won'
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} ariaLabel={won ? 'You won!' : 'Game over'}>
       <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
       <p className="endgame-modal__result">
         {won ? 'Brilliant!' : `The word was ${getAnswer().toUpperCase()}`}
