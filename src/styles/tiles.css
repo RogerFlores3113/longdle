@@ -189,3 +189,14 @@ body {
   margin-top: 16px;
   text-align: center;
 }
+
+/* ───────── Colorblind mode override (SETTINGS-02, D-17) ───────── */
+/* Applied by App.tsx: document.documentElement.classList.toggle('colorblind', colorblindMode) */
+/* Cascades automatically to all .tile--correct, .tile--present, .key--correct, .key--present, */
+/* .stats-bar--highlight, Share button background, and HowToPlay example tiles. */
+/* No component changes needed — CSS cascade handles all consumers. */
+
+html.colorblind {
+  --color-correct: #f5793a;  /* orange — high contrast */
+  --color-present: #85c0f9;  /* blue — high contrast */
+}
