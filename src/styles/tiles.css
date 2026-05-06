@@ -1,6 +1,6 @@
 :root {
-  --color-bg: #0d1b0d;
-  --color-surface: #1a2f1a;
+  --color-bg: #122012;
+  --color-surface: #1f341f;
   --color-correct: #538d4e;
   --color-present: #b59f3b;
   --color-absent: #3a3a3c;
@@ -201,8 +201,8 @@ body {
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-text);
-  color: var(--color-text-inverse);
+  background: #f0f0e8;
+  color: #0d1b0d;
   padding: 8px 16px;
   border-radius: 4px;
   font-size: 16px;
