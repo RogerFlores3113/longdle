@@ -22,7 +22,7 @@ export function Key({ label, value, status, wide }: KeyProps) {
   return (
     <button
       className={cls.join(' ')}
-      onClick={() => onKey(value)}
+      onPointerDown={() => onKey(value)}
       type="button"
       aria-label={value}
     >
