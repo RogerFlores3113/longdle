@@ -9,28 +9,38 @@ describe('EPOCH', () => {
 })
 
 describe('getDayIndex', () => {
-  it('returns 0 at epoch midnight UTC', () => {
-    expect(getDayIndex(new Date('2026-05-04T00:00:00Z'))).toBe(0)
+  it('returns -1 at UTC epoch midnight (2026-05-03 17:00 PDT — still day before in LA)', () => {
+    expect(getDayIndex(new Date('2026-05-04T00:00:00Z'))).toBe(-1)
   })
-  it('returns 0 one millisecond after epoch', () => {
-    expect(getDayIndex(new Date('2026-05-04T00:00:00.001Z'))).toBe(0)
+  it('returns 0 at LA midnight PDT start (2026-05-04T07:00:00Z = 2026-05-04 00:00 PDT)', () => {
+    expect(getDayIndex(new Date('2026-05-04T07:00:00Z'))).toBe(0)
   })
-  it('returns 0 at end-of-day epoch UTC', () => {
-    expect(getDayIndex(new Date('2026-05-04T23:59:59.999Z'))).toBe(0)
+  it('returns 0 one millisecond after LA midnight', () => {
+    expect(getDayIndex(new Date('2026-05-04T07:00:00.001Z'))).toBe(0)
   })
-  it('returns 1 at next-day midnight UTC', () => {
-    expect(getDayIndex(new Date('2026-05-05T00:00:00Z'))).toBe(1)
+  it('returns 0 at LA end-of-day (2026-05-05T06:59:59.999Z = 2026-05-04 23:59 PDT)', () => {
+    expect(getDayIndex(new Date('2026-05-05T06:59:59.999Z'))).toBe(0)
   })
-  it('returns same index regardless of timezone offset (Tokyo evening = UTC May 4)', () => {
-    // 2026-05-05 08:00 JST = 2026-05-04 23:00 UTC → still day 0
-    expect(getDayIndex(new Date('2026-05-04T23:00:00Z'))).toBe(0)
+  it('returns 1 at next LA midnight PDT (2026-05-05T07:00:00Z = 2026-05-05 00:00 PDT)', () => {
+    expect(getDayIndex(new Date('2026-05-05T07:00:00Z'))).toBe(1)
   })
-  it('returns next index for NYC late-evening that crossed UTC midnight', () => {
-    // 2026-05-04 23:00 EDT = 2026-05-05 03:00 UTC → day 1
-    expect(getDayIndex(new Date('2026-05-05T03:00:00Z'))).toBe(1)
+  it('returns -1 just before LA midnight on epoch day (2026-05-04T06:59:59Z = 2026-05-03 23:59 PDT)', () => {
+    expect(getDayIndex(new Date('2026-05-04T06:59:59Z'))).toBe(-1)
   })
-  it('returns 1461 four years past epoch (proves no overflow)', () => {
-    expect(getDayIndex(new Date('2030-05-04T00:00:00Z'))).toBe(1461)
+  it('handles PST after fall-back: 2026-11-01T08:00:00Z = 2026-11-01 00:00 PST (UTC-8)', () => {
+    // America/Los_Angeles falls back from PDT (UTC-7) to PST (UTC-8) on first Sunday of November
+    // 2026-11-01 is that Sunday; 08:00Z = 00:00 PST = start of LA day 181
+    const dayIndex = getDayIndex(new Date('2026-11-01T08:00:00Z'))
+    // 2026-05-04 to 2026-11-01 = 181 days
+    expect(dayIndex).toBe(181)
+  })
+  it('handles PDT just before LA midnight: 2026-11-01T06:59:59Z = 2026-10-31 23:59 PDT', () => {
+    // America/Los_Angeles at 06:59:59Z is 11:59:59 PM PDT (UTC-7) on Oct 31, which is still LA day 180
+    expect(getDayIndex(new Date('2026-11-01T06:59:59Z'))).toBe(180)
+  })
+  it('returns positive integer far from epoch (no overflow)', () => {
+    // 2030-05-04 00:00 PDT = 2030-05-04T07:00:00Z
+    expect(getDayIndex(new Date('2030-05-04T07:00:00Z'))).toBe(1461)
   })
 })
 

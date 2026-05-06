@@ -4,12 +4,18 @@ export const EPOCH = new Date('2026-05-04T00:00:00Z').getTime()
 const MS_PER_DAY = 86_400_000
 
 export function getDayIndex(now: Date = new Date()): number {
-  const utcToday = Date.UTC(
-    now.getUTCFullYear(),
-    now.getUTCMonth(),
-    now.getUTCDate()
-  )
-  return Math.floor((utcToday - EPOCH) / MS_PER_DAY)
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+  const parts = fmt.formatToParts(now)
+  const year = Number(parts.find(p => p.type === 'year')!.value)
+  const month = Number(parts.find(p => p.type === 'month')!.value)
+  const day = Number(parts.find(p => p.type === 'day')!.value)
+  const laToday = Date.UTC(year, month - 1, day)
+  return Math.floor((laToday - EPOCH) / MS_PER_DAY)
 }
 
 export function getDailyAnswer(dayIndex: number = getDayIndex()): string {
