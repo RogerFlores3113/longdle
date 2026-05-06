@@ -29,14 +29,15 @@ body {
   display: flex;
   flex-direction: row;
   gap: 4px;
+  perspective: 600px;
 }
 
 .row--shake {
-  /* Phase 3 will define @keyframes shake. Class is plumbed but inert in Phase 1. */
+  animation: shake 350ms ease-in-out;
 }
 
 .row--win {
-  /* Phase 3 will define @keyframes bounce. */
+  animation: bounce 800ms ease-out;
 }
 
 .tile {
@@ -54,6 +55,10 @@ body {
   color: var(--color-text);
   user-select: none;
   box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .tile--empty {
@@ -80,6 +85,36 @@ body {
   background: var(--color-absent);
   border-color: var(--color-absent);
   color: var(--color-text-inverse);
+}
+
+.tile--flip {
+  animation: tile-flip 350ms ease-in-out forwards;
+}
+
+@keyframes tile-flip {
+  0%   { transform: rotateY(0deg); }
+  50%  { transform: rotateY(90deg); }
+  100% { transform: rotateY(0deg); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 50%, 90% { transform: translateX(-4px); }
+  30%, 70% { transform: translateX(4px); }
+}
+
+@keyframes bounce {
+  0%, 20% { transform: translateY(0); }
+  40% { transform: translateY(-12px); }
+  60% { transform: translateY(0); }
+  80% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile--flip,
+  .row--shake,
+  .row--win { animation: none; }
 }
 
 /* ───────── Keyboard / Key ───────── */
