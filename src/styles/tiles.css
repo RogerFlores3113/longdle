@@ -23,6 +23,9 @@ body {
   flex-direction: column;
   gap: 8px;
   align-items: center;
+  max-width: min(400px, 100vw);
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 .row {
@@ -41,12 +44,12 @@ body {
 }
 
 .tile {
-  width: 56px;
-  height: 56px;
+  width: clamp(44px, 13vw, 56px);
+  height: clamp(44px, 13vw, 56px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: clamp(24px, 7vw, 32px);
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
@@ -123,8 +126,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 8px;
+  padding: 8px 4px;
   align-items: center;
+  max-width: min(500px, 100vw);
+  box-sizing: border-box;
 }
 
 .keyboard__row {
@@ -136,7 +141,7 @@ body {
 
 .key {
   height: 56px;
-  width: 40px;
+  width: clamp(32px, 8.5vw, 40px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,10 +154,11 @@ body {
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
 }
 
 .key--wide {
-  width: 64px;
+  width: clamp(52px, 13vw, 64px);
   font-size: 12px;
 }
 
@@ -185,6 +191,12 @@ body {
   font-size: 16px;
   z-index: 50;
   pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.toast--hiding {
+  opacity: 0;
 }
 
 /* ───────── App shell ───────── */
