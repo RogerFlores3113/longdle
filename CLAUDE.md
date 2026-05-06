@@ -20,15 +20,24 @@ Longdle is a 6-letter daily Wordle clone built as a static React SPA deployed to
 2. Yellow pass: from remaining unmatched slots, mark letters present elsewhere (but not already matched green)
 
 ### Day-Index (timezone)
-**Use `Date.UTC()` exclusively — never `new Date()` local time.** Two players must always see the same daily word.
+**Use `Intl.DateTimeFormat` with `timeZone: 'America/Los_Angeles'` — the daily word rolls over at LA midnight (DST-aware).** Both players must always see the same daily word, and that rollover point is LA midnight per DAILY-06.
+
 ```ts
 const EPOCH = new Date('2026-05-04T00:00:00Z').getTime()
-const getDayIndex = () => {
-  const now = new Date()
-  const utcToday = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-  return Math.floor((utcToday - EPOCH) / 86_400_000)
+export function getDayIndex(now: Date = new Date()): number {
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+  })
+  const parts = fmt.formatToParts(now)
+  const year = Number(parts.find(p => p.type === 'year')!.value)
+  const month = Number(parts.find(p => p.type === 'month')!.value)
+  const day = Number(parts.find(p => p.type === 'day')!.value)
+  return Math.floor((Date.UTC(year, month - 1, day) - EPOCH) / 86_400_000)
 }
 ```
+
+**Do not revert to `Date.UTC(now.getUTCFullYear(), ...)`.** The old UTC approach was superseded by DAILY-06 — LA midnight ensures the puzzle changes at a predictable clock time for West Coast users.
 
 ### Clipboard (iOS Safari)
 **No `await` before `navigator.clipboard.writeText()`** — Safari revokes the gesture context. Generate share text synchronously, then call `writeText` synchronously. Include a `.catch()` fallback showing the text in a modal.

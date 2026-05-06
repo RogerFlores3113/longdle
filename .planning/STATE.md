@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Day-One Polish + Practice Mode
 status: executing
-stopped_at: Phase 4 roadmap created
+stopped_at: Phase 4 complete
 last_updated: "2026-05-06T00:00:00.000Z"
-last_activity: 2026-05-06 -- v1.1 roadmap created (Phases 4-5)
+last_activity: 2026-05-06 -- Phase 4 UX Polish complete (2/2 plans)
 progress:
   total_phases: 5
-  completed_phases: 2
+  completed_phases: 4
   total_plans: 16
-  completed_plans: 12
-  percent: 40
+  completed_plans: 14
+  percent: 75
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-04)
 
 **Core value:** Two people play the same daily 6-letter word and share their emoji grid — that daily ritual must work flawlessly every day.
-**Current focus:** Phase 3 — Polish + Deploy (then v1.1 Phases 4–5)
+**Current focus:** Phase 5 — Practice Mode
 
 ## Current Position
 
-Phase: 3 of 5 (Polish + Deploy) — Ready to plan
-Plan: 0 of 4 in Phase 3 (Phase 2 complete, Phase 3 not yet planned)
-Status: Ready to execute
-Last activity: 2026-05-06 -- v1.1 roadmap created (Phases 4-5)
+Phase: 4 of 5 (UX Polish) — Complete
+Plan: 2 of 2 in Phase 4 (all complete)
+Status: Ready for Phase 5
+Last activity: 2026-05-06 -- Phase 4 UX Polish complete (color tokens, toast fix, onPointerDown, LA timezone)
 
-Progress: [████░░░░░░] 40%
+Progress: [███████░░░] 75%
 
 ## Performance Metrics
 

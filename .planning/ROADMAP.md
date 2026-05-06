@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation** - Data layer, algorithms, useGame hook — game is fully playable
 - [x] **Phase 2: Features** - Modals, sharing, stats, settings, accessibility, v3 stub
 - [ ] **Phase 3: Polish + Deploy** - Theme, CSS animations, mobile polish, Vercel deploy
-- [ ] **Phase 4: UX Polish** - Color tokens, toast redesign, mobile input latency, LA timezone rollover
+- [x] **Phase 4: UX Polish** - Color tokens, toast redesign, mobile input latency, LA timezone rollover (2026-05-06)
 - [ ] **Phase 5: Practice Mode** - /random route, Practice Mode banner, stat isolation
 
 ## Phase Details
@@ -85,8 +85,8 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. On mobile, tapping a key registers immediately with no perceptible delay between presses
   4. Both players see a new word starting at midnight Los Angeles time (DST-aware) — verified by checking behavior on both sides of a DST boundary
 **Plans**: 2 plans
-  - [ ] 04-01-PLAN.md — CSS token nudge (--color-bg, --color-surface) + toast color fix in tiles.css
-  - [ ] 04-02-PLAN.md — Key.tsx onPointerDown + getDayIndex() LA timezone + updated tests
+  - [x] 04-01-PLAN.md — CSS token nudge (--color-bg, --color-surface) + toast color fix in tiles.css
+  - [x] 04-02-PLAN.md — Key.tsx onPointerDown + getDayIndex() LA timezone + updated tests
 **UI hint**: yes
 
 ### Phase 5: Practice Mode
@@ -109,5 +109,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation | 5/5 | Complete | 2026-05-05 |
 | 2. Features | 7/7 | Complete | 2026-05-05 |
 | 3. Polish + Deploy | 0/4 | Not started | - |
-| 4. UX Polish | 0/2 | Not started | - |
+| 4. UX Polish | 2/2 | Complete | 2026-05-06 |
 | 5. Practice Mode | 0/TBD | Not started | - |
