@@ -1,17 +1,17 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: ready
-stopped_at: "Phase 2 complete — all features verified, browser smoke tests pending (02-HUMAN-UAT.md)"
-last_updated: "2026-05-05T16:25:00Z"
-last_activity: 2026-05-05 -- Phase 2 Features complete (7/7 plans verified, code review fixed 8 issues, advancing to Phase 3)
+milestone: v1.1
+milestone_name: Day-One Polish + Practice Mode
+status: executing
+stopped_at: Phase 4 roadmap created
+last_updated: "2026-05-06T00:00:00.000Z"
+last_activity: 2026-05-06 -- v1.1 roadmap created (Phases 4-5)
 progress:
-  total_phases: 3
+  total_phases: 5
   completed_phases: 2
-  total_plans: 12
+  total_plans: 16
   completed_plans: 12
-  percent: 67
+  percent: 40
 ---
 
 # Project State
@@ -21,22 +21,22 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-04)
 
 **Core value:** Two people play the same daily 6-letter word and share their emoji grid — that daily ritual must work flawlessly every day.
-**Current focus:** Phase 2 — Features
+**Current focus:** Phase 3 — Polish + Deploy (then v1.1 Phases 4–5)
 
 ## Current Position
 
-Phase: 3 of 3 (Polish + Deploy) — Ready to plan
-Plan: 0 of TBD in Phase 3 (Phase 2 complete, Phase 3 not yet planned)
-Status: Phase 2 complete — advancing to Phase 3 Polish + Deploy
-Last activity: 2026-05-05 -- Phase 2 complete (7/7 plans; 6 browser smoke tests in 02-HUMAN-UAT.md)
+Phase: 3 of 5 (Polish + Deploy) — Ready to plan
+Plan: 0 of 4 in Phase 3 (Phase 2 complete, Phase 3 not yet planned)
+Status: Ready to execute
+Last activity: 2026-05-06 -- v1.1 roadmap created (Phases 4-5)
 
-Progress: [███░░░░░░░] 33%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 5 (Phase 1 complete)
+- Total plans completed: 12 (Phases 1–2 complete)
 - Average duration: 6.4 min
 - Total execution time: 0.53 hours
 
@@ -45,6 +45,7 @@ Progress: [███░░░░░░░] 33%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | Phase 1 | 5/5 | 32 min | 6.4 min |
+| Phase 2 | 7/7 | — | — |
 
 **Recent Trend:**
 
@@ -72,6 +73,7 @@ Recent decisions affecting current work:
 - 01-05: Shake transient state owned by Board (useRef + setTimeout 350ms) — transient UI animation must not survive reload; store exposes rowShakeKey increment as trigger only
 - 01-05: CSS classes (row--shake, row--win, tile--active) plumbed but @keyframes inert in Phase 1 — Phase 3 adds animations in CSS only, no React changes needed
 - 01-05: Phase 3 theming contract: override :root custom properties in tiles.css only — all 8 color tokens declared in Phase 1
+- v1.1: Practice mode uses /random route — game state scoped to session memory only, no localStorage writes
 
 ### Pending Todos
 
@@ -86,12 +88,11 @@ None.
 | Category | Item | Status | Deferred At |
 |----------|------|--------|-------------|
 | v2 | Sound effects | Deferred | Pre-launch |
-| v2 | Practice mode | Deferred | Pre-launch |
 | v2 | Score comparison UI | Deferred | Pre-launch |
 | v3 | Red panda animations / pixel art | Deferred | Pre-launch |
 
 ## Session Continuity
 
-Last session: 2026-05-05T08:50:00Z
-Stopped at: Completed 01-05-PLAN.md — Phase 1 Foundation closed
-Resume file: None
+Last session: 2026-05-06
+Stopped at: Phase 3 UI-SPEC approved; v1.1 roadmap (Phases 4–5) created
+Resume file: .planning/phases/03-polish-deploy/03-UI-SPEC.md

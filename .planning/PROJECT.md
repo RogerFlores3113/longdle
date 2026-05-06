@@ -8,6 +8,17 @@ Longdle is a daily 6-letter Wordle clone built as a standalone React app hosted 
 
 Two people play the same daily 6-letter word and share their emoji grid result — that daily ritual must work flawlessly every day.
 
+## Current Milestone: v1.1 Day-One Polish + Practice Mode
+
+**Goal:** Fix the four most visible UX rough edges and add a /random practice mode before the game gets shared.
+
+**Target features:**
+- Color tokens nudged lighter (background + keyboard surface too dark)
+- Toast redesigned as high-contrast near-white pill with dark green text
+- Mobile key input: instant response via onPointerDown (no inter-keypress delay)
+- Daily rotation: America/Los_Angeles DST-aware midnight rollover
+- /random practice mode: random word, no stats impact, Practice Mode banner
+
 ## Requirements
 
 ### Validated

@@ -2,7 +2,7 @@
 
 **Project:** Longdle — 6-letter daily Wordle clone
 **Version:** v1
-**Last updated:** 2026-05-04
+**Last updated:** 2026-05-06
 
 ---
 
@@ -64,6 +64,26 @@
 ### v3 Placeholder
 
 - [ ] **V3-01**: A no-op `<WinAnimation />` component slot exists in the EndGame modal with a documented interface, ready for future red panda pixel art integration — currently renders nothing
+
+---
+
+## v1.1 Requirements
+
+### Polish Fixes
+
+- [ ] **POLISH-01**: Background and keyboard surface colors are visibly comfortable to read (CSS tokens nudged lighter)
+- [ ] **POLISH-02**: Toast notifications render as a high-contrast near-white pill with dark green text, readable at a glance
+- [ ] **POLISH-03**: Mobile key presses register instantly with no perceptible inter-keypress delay
+
+### Daily Rotation
+
+- [ ] **DAILY-06**: Daily word rolls over at midnight America/Los_Angeles time (DST-aware) — same word for all players within that PT calendar day
+
+### Practice Mode
+
+- [ ] **PRACTICE-01**: Visiting `/random` loads a practice game with a randomly selected word from the answer list
+- [ ] **PRACTICE-02**: Practice mode displays a visible "Practice Mode" banner distinguishing it from the daily puzzle
+- [ ] **PRACTICE-03**: Guesses made in practice mode do not affect daily stats, streaks, or localStorage game state
 
 ---
 
@@ -133,3 +153,10 @@
 | THEME-05 | Phase 3 | Pending |
 | DEPLOY-01 | Phase 3 | Pending |
 | DEPLOY-02 | Phase 3 | Pending |
+| POLISH-01 | Phase 4 | Pending |
+| POLISH-02 | Phase 4 | Pending |
+| POLISH-03 | Phase 4 | Pending |
+| DAILY-06 | Phase 4 | Pending |
+| PRACTICE-01 | Phase 5 | Pending |
+| PRACTICE-02 | Phase 5 | Pending |
+| PRACTICE-03 | Phase 5 | Pending |
