@@ -84,7 +84,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Toast notifications appear as a near-white pill with dark green text — readable at a glance in any lighting
   3. On mobile, tapping a key registers immediately with no perceptible delay between presses
   4. Both players see a new word starting at midnight Los Angeles time (DST-aware) — verified by checking behavior on both sides of a DST boundary
-**Plans**: TBD
+**Plans**: 2 plans
+  - [ ] 04-01-PLAN.md — CSS token nudge (--color-bg, --color-surface) + toast color fix in tiles.css
+  - [ ] 04-02-PLAN.md — Key.tsx onPointerDown + getDayIndex() LA timezone + updated tests
 **UI hint**: yes
 
 ### Phase 5: Practice Mode
@@ -107,5 +109,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation | 5/5 | Complete | 2026-05-05 |
 | 2. Features | 7/7 | Complete | 2026-05-05 |
 | 3. Polish + Deploy | 0/4 | Not started | - |
-| 4. UX Polish | 0/TBD | Not started | - |
+| 4. UX Polish | 0/2 | Not started | - |
 | 5. Practice Mode | 0/TBD | Not started | - |
