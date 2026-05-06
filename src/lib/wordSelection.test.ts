@@ -28,14 +28,15 @@ describe('getDayIndex', () => {
     expect(getDayIndex(new Date('2026-05-04T06:59:59Z'))).toBe(-1)
   })
   it('handles PST after fall-back: 2026-11-01T08:00:00Z = 2026-11-01 00:00 PST (UTC-8)', () => {
-    // LA falls back from PDT (UTC-7) to PST (UTC-8) on first Sunday of November
-    // 2026-11-01 is that Sunday; 08:00Z = 00:00 PST
+    // America/Los_Angeles falls back from PDT (UTC-7) to PST (UTC-8) on first Sunday of November
+    // 2026-11-01 is that Sunday; 08:00Z = 00:00 PST = start of LA day 181
     const dayIndex = getDayIndex(new Date('2026-11-01T08:00:00Z'))
     // 2026-05-04 to 2026-11-01 = 181 days
     expect(dayIndex).toBe(181)
   })
-  it('handles PST before midnight: 2026-11-01T07:59:59Z = 2026-10-31 23:59 PST', () => {
-    expect(getDayIndex(new Date('2026-11-01T07:59:59Z'))).toBe(180)
+  it('handles PDT just before LA midnight: 2026-11-01T06:59:59Z = 2026-10-31 23:59 PDT', () => {
+    // America/Los_Angeles at 06:59:59Z is 11:59:59 PM PDT (UTC-7) on Oct 31, which is still LA day 180
+    expect(getDayIndex(new Date('2026-11-01T06:59:59Z'))).toBe(180)
   })
   it('returns positive integer far from epoch (no overflow)', () => {
     // 2030-05-04 00:00 PDT = 2030-05-04T07:00:00Z
