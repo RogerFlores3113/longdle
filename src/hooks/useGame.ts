@@ -15,6 +15,9 @@ import type { ScoredGuess, KeyStatus, GameStatus } from '../types/game'
 
 const TOAST_MS = 1500
 const SHAKE_MS = 350
+const FLIP_DURATION_MS = 350
+const FLIP_STAGGER_MS = 150
+const FLIP_TOTAL_MS = (6 - 1) * FLIP_STAGGER_MS + FLIP_DURATION_MS + 50  // 1150ms
 const MAX_GUESSES = 7
 
 const KEY_RANK: Record<KeyStatus, number> = { correct: 3, present: 2, absent: 1 }
@@ -60,11 +63,13 @@ export interface SettingsState {
 // HMR disposal clears pending timers so stale set() calls do not fire after reload.
 let toastTimer: ReturnType<typeof setTimeout> | null = null
 let shakeTimer: ReturnType<typeof setTimeout> | null = null
+let flipTimer: ReturnType<typeof setTimeout> | null = null
 
 if (import.meta.hot) {
   import.meta.hot.dispose(() => {
     if (toastTimer) clearTimeout(toastTimer)
     if (shakeTimer) clearTimeout(shakeTimer)
+    if (flipTimer) clearTimeout(flipTimer)
   })
 }
 
@@ -142,11 +147,17 @@ export const useGame = create<GameState>()(
             currentGuess: '',
             keyStatuses: nextKeyStatuses,
             gameStatus,
-            // WR-05: lock input immediately on game end so a rapid double-tap on Enter
-            // cannot re-enter onKey before React re-renders with the new gameStatus.
-            // The isAnimating guard at the top of onKey will block the second call.
-            isAnimating: gameStatus !== 'playing',
+            // Phase 3: set true on EVERY submit (not just game-end) so the tile flip
+            // animation blocks keyboard input for the full 1150ms flip window.
+            // The flipTimer below clears it after FLIP_TOTAL_MS.
+            isAnimating: true,
           })
+
+          if (flipTimer) clearTimeout(flipTimer)
+          flipTimer = setTimeout(() => {
+            useGame.setState({ isAnimating: false })
+            flipTimer = null
+          }, FLIP_TOTAL_MS)
 
           if (gameStatus !== 'playing') {
             // D-06: stats written directly via storage lib on game end

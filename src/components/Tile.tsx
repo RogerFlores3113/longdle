@@ -3,6 +3,8 @@ import type { TileStatus } from '../types/game'
 interface TileProps {
   letter: string
   status: TileStatus
+  flip?: boolean
+  flipDelayMs?: number
 }
 
 const STATUS_CLASS: Record<TileStatus, string> = {
@@ -13,9 +15,11 @@ const STATUS_CLASS: Record<TileStatus, string> = {
   absent: 'tile--absent',
 }
 
-export function Tile({ letter, status }: TileProps) {
+export function Tile({ letter, status, flip, flipDelayMs }: TileProps) {
+  const cls = `tile ${STATUS_CLASS[status]}${flip ? ' tile--flip' : ''}`
+  const style = flip ? { animationDelay: `${flipDelayMs ?? 0}ms` } : undefined
   return (
-    <div className={`tile ${STATUS_CLASS[status]}`} data-status={status}>
+    <div className={cls} data-status={status} style={style}>
       {status === 'empty' ? '' : letter}
     </div>
   )

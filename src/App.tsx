@@ -23,6 +23,7 @@ function App() {
   const [copyFallbackText, setCopyFallbackText] = useState('')
 
   const gameStatus = useGame((s) => s.gameStatus)
+  const isAnimating = useGame((s) => s.isAnimating)
   const { colorblindMode, hasSeenHowToPlay, setHasSeenHowToPlay } = useSettings()
 
   // D-12: Auto-open HowToPlay on first visit (run once on mount)
@@ -33,13 +34,12 @@ function App() {
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // D-03: Auto-open EndGame modal when game ends
+  // D-03 + Phase 3 D-08: Auto-open EndGame modal after the tile flip completes
   useEffect(() => {
-    if (gameStatus === 'won' || gameStatus === 'lost') {
+    if ((gameStatus === 'won' || gameStatus === 'lost') && !isAnimating) {
       setActiveModal('endGame')
     }
-    // TODO: Phase 3 — add !isAnimating check here before opening EndGame modal (tile flip timing)
-  }, [gameStatus])
+  }, [gameStatus, isAnimating])
 
   // D-16: Toggle colorblind CSS class on <html> element
   useEffect(() => {
