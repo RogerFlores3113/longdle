@@ -9,6 +9,7 @@ export function Board() {
   const currentGuess = useGame((s) => s.currentGuess)
   const gameStatus = useGame((s) => s.gameStatus)
   const rowShakeKey = useGame((s) => s.rowShakeKey)
+  const isAnimating = useGame((s) => s.isAnimating)
 
   // Track which shake-key the active row is on; flip a transient flag for ~350ms
   const [shaking, setShaking] = useState(false)
@@ -37,6 +38,7 @@ export function Board() {
           isActive={false}
           isShaking={false}
           isWinning={i === winningIndex}
+          isFlipping={i === guesses.length - 1 && isAnimating}
         />
       )
     } else if (i === activeIndex) {
@@ -48,6 +50,7 @@ export function Board() {
           isActive
           isShaking={shaking}
           isWinning={false}
+          isFlipping={false}
         />
       )
     } else {
@@ -59,6 +62,7 @@ export function Board() {
           isActive={false}
           isShaking={false}
           isWinning={false}
+          isFlipping={false}
         />
       )
     }
