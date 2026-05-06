@@ -84,7 +84,7 @@ function App() {
           <HelpIcon />
         </button>
         <span>Longdle</span>
-        <div style={{ display: 'flex', gap: 4 }}>
+        <div className="app__header-right">
           <button
             className="header-icon-btn"
             onClick={() => setActiveModal('stats')}
