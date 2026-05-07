@@ -1,5 +1,5 @@
 import type { KeyStatus } from '../types/game'
-import { useGame } from '../hooks/useGame'
+import { useGameContext } from '../contexts/GameContext'
 
 interface KeyProps {
   label: string
@@ -15,7 +15,7 @@ const STATUS_CLASS: Record<KeyStatus, string> = {
 }
 
 export function Key({ label, value, status, wide }: KeyProps) {
-  const onKey = useGame((s) => s.onKey)
+  const { onKey } = useGameContext()
   const cls = ['key']
   if (wide) cls.push('key--wide')
   if (status) cls.push(STATUS_CLASS[status])

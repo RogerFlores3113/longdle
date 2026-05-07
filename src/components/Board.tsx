@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { useGame } from '../hooks/useGame'
+import { useGameContext } from '../contexts/GameContext'
 import { Row } from './Row'
 
 const MAX_GUESSES = 7
 
 export function Board() {
-  const guesses = useGame((s) => s.guesses)
-  const currentGuess = useGame((s) => s.currentGuess)
-  const gameStatus = useGame((s) => s.gameStatus)
-  const rowShakeKey = useGame((s) => s.rowShakeKey)
-  const isAnimating = useGame((s) => s.isAnimating)
+  const { guesses, currentGuess, gameStatus, rowShakeKey, isAnimating } = useGameContext()
 
   // Track which shake-key the active row is on; flip a transient flag for ~350ms
   const [shaking, setShaking] = useState(false)

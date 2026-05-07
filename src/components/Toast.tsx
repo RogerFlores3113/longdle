@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useGame } from '../hooks/useGame'
+import { useGameContext } from '../contexts/GameContext'
 
 export function Toast() {
-  const message = useGame((s) => s.toastMessage)
+  const { toastMessage: message } = useGameContext()
   const [hiding, setHiding] = useState(false)
 
   useEffect(() => {

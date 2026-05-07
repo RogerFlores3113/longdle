@@ -1,4 +1,4 @@
-import { useGame } from '../hooks/useGame'
+import { useGameContext } from '../contexts/GameContext'
 import { Key } from './Key'
 
 const ROW_1 = 'qwertyuiop'.split('')
@@ -6,7 +6,7 @@ const ROW_2 = 'asdfghjkl'.split('')
 const ROW_3 = 'zxcvbnm'.split('')
 
 export function Keyboard() {
-  const keyStatuses = useGame((s) => s.keyStatuses)
+  const { keyStatuses } = useGameContext()
   return (
     <div className="keyboard">
       <div className="keyboard__row">
