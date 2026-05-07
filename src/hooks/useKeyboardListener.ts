@@ -1,32 +1,33 @@
 import { useEffect } from 'react'
-import { useGame } from './useGame'
 
 /**
- * Wires document-level keydown to useGame.onKey.
+ * Attaches a document-level keydown listener that routes keyboard events to the
+ * provided onKey callback. Modifier keys (meta/ctrl/alt) are ignored.
  *
- * Single source of physical input per D-10. The store action is the single seam
- * (ARCHITECTURE) — both this hook and on-screen Key clicks call useGame.onKey.
+ * @param onKey - Called with normalized key: single lowercase letter, 'Enter',
+ *                'Backspace', or 'Delete'. Delete is passed as-is; callers may
+ *                normalize to 'Backspace' if desired.
+ *
+ * Callers:
+ *   App.tsx:          useKeyboardListener(useGame.getState().onKey)
+ *   PracticeGame.tsx: useKeyboardListener(usePracticeGame.getState().onKey)
  */
-export function useKeyboardListener(): void {
+export function useKeyboardListener(onKey: (key: string) => void): void {
   useEffect(() => {
     function handler(e: KeyboardEvent) {
-      // Don't intercept browser shortcuts.
       if (e.metaKey || e.ctrlKey || e.altKey) return
-
       const k = e.key
       if (k === 'Enter' || k === 'Backspace' || k === 'Delete') {
         e.preventDefault()
-        useGame.getState().onKey(k)
+        onKey(k)
         return
       }
       if (/^[a-zA-Z]$/.test(k)) {
         e.preventDefault()
-        useGame.getState().onKey(k.toLowerCase())
+        onKey(k.toLowerCase())
       }
-      // All other keys: ignore (no preventDefault per UI-SPEC).
     }
-
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
-  }, [])
+  }, [onKey])
 }
