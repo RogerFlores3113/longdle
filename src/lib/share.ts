@@ -12,7 +12,7 @@ export function generateShareText(
   const lastGuess = guesses[guesses.length - 1]
   const won = lastGuess?.statuses.every((s) => s === 'correct') ?? false
   const score = won ? String(guesses.length) : 'X'
-  const header = `Longdle #${dayIndex + 1} ${score}/7`
+  const header = `Longdle #${dayIndex + 1} ${score}/6`
   const grid = guesses
     .map(({ statuses }) =>
       statuses

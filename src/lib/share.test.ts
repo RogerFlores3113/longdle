@@ -14,10 +14,10 @@ function guess(word: string, pattern: string): ScoredGuess {
 }
 
 describe('generateShareText', () => {
-  it('formats a won game header as Longdle #N M/7', () => {
+  it('formats a won game header as Longdle #N M/6', () => {
     const guesses = [guess('ABCDEF', 'AAAAAC'), guess('GHIJKL', 'CCCCCC')]
     const result = generateShareText(guesses, 0, false)
-    expect(result.split('\n')[0]).toBe('Longdle #1 2/7')
+    expect(result.split('\n')[0]).toBe('Longdle #1 2/6')
   })
 
   it('formats a lost game header with X', () => {
@@ -31,7 +31,7 @@ describe('generateShareText', () => {
       guess('KLMNOP', 'AAAAAA'),
     ]
     const result = generateShareText(guesses, 9, false)
-    expect(result.split('\n')[0]).toBe('Longdle #10 X/7')
+    expect(result.split('\n')[0]).toBe('Longdle #10 X/6')
   })
 
   it('uses normal emoji in normal mode', () => {

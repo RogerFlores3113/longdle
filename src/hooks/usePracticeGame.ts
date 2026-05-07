@@ -11,7 +11,7 @@ const SHAKE_MS = 350
 const FLIP_DURATION_MS = 350
 const FLIP_STAGGER_MS = 150
 const FLIP_TOTAL_MS = (6 - 1) * FLIP_STAGGER_MS + FLIP_DURATION_MS + 50  // 1150ms
-const MAX_GUESSES = 7
+const MAX_GUESSES = 6
 
 function pickRandom(): string {
   return ANSWERS[Math.floor(Math.random() * ANSWERS.length)]

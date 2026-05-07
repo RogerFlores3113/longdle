@@ -206,6 +206,7 @@ body {
   padding: 8px 16px;
   border-radius: 4px;
   font-size: 16px;
+  font-weight: 700;
   z-index: 50;
   pointer-events: none;
   opacity: 1;
@@ -478,9 +479,23 @@ html.colorblind {
 
 /* ───────── Header icon buttons (D-18, D-19) ───────── */
 
-.app__header > span {
+.app__header-left {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.app__header-title {
   font-size: 24px;
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.app__header-puzzle-num {
+  font-size: 16px;
+  font-weight: 400;
+  color: #6aad6a;
+  margin-left: 2px;
 }
 
 .header-icon-btn {

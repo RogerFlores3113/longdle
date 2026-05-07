@@ -26,6 +26,7 @@ function App() {
 
   const gameStatus = useGame((s) => s.gameStatus)
   const isAnimating = useGame((s) => s.isAnimating)
+  const dayIndex = useGame((s) => s.dayIndex)
   const guesses = useGame((s) => s.guesses)
   const currentGuess = useGame((s) => s.currentGuess)
   const toastMessage = useGame((s) => s.toastMessage)
@@ -95,14 +96,35 @@ function App() {
   return (
     <div className="app">
       <header className="app__header">
-        <button
-          className="header-icon-btn"
-          onClick={() => setActiveModal('howToPlay')}
-          aria-label="How to play"
-        >
-          <HelpIcon />
-        </button>
-        <span>Longdle</span>
+        <div className="app__header-left">
+          <button
+            className="header-icon-btn"
+            onClick={() => setActiveModal('howToPlay')}
+            aria-label="How to play"
+          >
+            <HelpIcon />
+          </button>
+          <button
+            className="header-icon-btn"
+            onClick={() => { window.location.href = '/random' }}
+            aria-label="Practice mode"
+            title="Practice mode"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="3" ry="3"/>
+              <circle cx="8"  cy="8"  r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="16" cy="8"  r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="8"  cy="16" r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="8"  cy="12" r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="16" cy="12" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+          </button>
+        </div>
+        <span className="app__header-title">Longdle <span className="app__header-puzzle-num">{(() => {
+          const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', month: 'numeric', day: 'numeric', year: '2-digit' })
+          return `#${dayIndex + 1} · ${fmt.format(new Date())}`
+        })()}</span></span>
         <div className="app__header-right">
           <button
             className="header-icon-btn"

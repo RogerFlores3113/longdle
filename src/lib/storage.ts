@@ -57,7 +57,7 @@ export function recordGameEnd(won: boolean, guessCount: number): Stats {
       : current.maxStreak,
     guessDistribution: [...current.guessDistribution],
   }
-  if (won && guessCount >= 1 && guessCount <= 7) {
+  if (won && guessCount >= 1 && guessCount <= 6) {
     next.guessDistribution[guessCount - 1]++
   }
   writeStats(next)

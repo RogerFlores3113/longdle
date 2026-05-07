@@ -8,7 +8,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         How To Play
       </h2>
       <p style={{ fontSize: 16, lineHeight: 1.5, margin: '0 0 16px' }}>
-        Guess the <strong>LONGDLE</strong> in 7 tries.
+        Guess the <strong>LONGDLE</strong> in 6 tries.
         Each guess must be a valid 6-letter word.
       </p>
       <p style={{ fontSize: 12, fontWeight: 600, textTransform: 'uppercase', margin: '0 0 12px', letterSpacing: '0.05em' }}>

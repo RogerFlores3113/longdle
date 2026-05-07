@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useGameContext } from '../contexts/GameContext'
 import { Row } from './Row'
 
-const MAX_GUESSES = 7
+const MAX_GUESSES = 6
 
 export function Board() {
   const { guesses, currentGuess, gameStatus, rowShakeKey, isAnimating } = useGameContext()
