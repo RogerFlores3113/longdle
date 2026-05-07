@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { scoreTiles } from '../lib/scoring'
-import type { TileStatus } from '../lib/scoring'
 import { validateHardModeGuess } from '../lib/hardMode'
 import { VALID_WORDS, ANSWERS } from '../data/words'
 import { upgradeKeyStatus, showToast, triggerShake } from '../lib/gameCore'
