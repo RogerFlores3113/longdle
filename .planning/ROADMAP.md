@@ -97,7 +97,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. Visiting /random loads a complete, playable game with a random word from the answer list
   2. A visible "Practice Mode" banner is always present during practice play, distinguishing it from the daily puzzle
   3. Completing or abandoning a practice game leaves daily stats, streaks, and localStorage game state entirely unchanged
-**Plans**: TBD
+**Plans**: 4 plans
+  - [ ] 05-01-PLAN.md — gameCore.ts helpers + GameContext + useKeyboardListener generalization (foundation)
+  - [ ] 05-02-PLAN.md — usePracticeGame Zustand store (no persist, no recordGameEnd, private timers)
+  - [ ] 05-03-PLAN.md — Board/Keyboard/Key/Toast refactored to GameContext + App.tsx Provider wiring
+  - [ ] 05-04-PLAN.md — PracticeGame + PracticeBanner + PracticeEndGameModal + main.tsx routing + smoke checkpoint
 
 ## Progress
 
@@ -110,4 +114,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Features | 7/7 | Complete | 2026-05-05 |
 | 3. Polish + Deploy | 0/4 | Not started | - |
 | 4. UX Polish | 2/2 | Complete | 2026-05-06 |
-| 5. Practice Mode | 0/TBD | Not started | - |
+| 5. Practice Mode | 0/4 | Not started | - |
