@@ -13,18 +13,37 @@ import { SettingsIcon } from './components/icons/SettingsIcon'
 import { useGame, useSettings, showGameToast } from './hooks/useGame'
 import { useKeyboardListener } from './hooks/useKeyboardListener'
 import { generateShareText } from './lib/share'
+import { GameContext } from './contexts/GameContext'
+import type { GameContextValue } from './contexts/GameContext'
 
 type ActiveModal = 'howToPlay' | 'stats' | 'settings' | 'endGame' | 'copyFallback' | null
 
 function App() {
-  useKeyboardListener()
+  useKeyboardListener(useGame.getState().onKey)
 
   const [activeModal, setActiveModal] = useState<ActiveModal>(null)
   const [copyFallbackText, setCopyFallbackText] = useState('')
 
   const gameStatus = useGame((s) => s.gameStatus)
   const isAnimating = useGame((s) => s.isAnimating)
+  const guesses = useGame((s) => s.guesses)
+  const currentGuess = useGame((s) => s.currentGuess)
+  const toastMessage = useGame((s) => s.toastMessage)
+  const rowShakeKey = useGame((s) => s.rowShakeKey)
+  const keyStatuses = useGame((s) => s.keyStatuses)
+  const onKey = useGame((s) => s.onKey)
   const { colorblindMode, hasSeenHowToPlay, setHasSeenHowToPlay } = useSettings()
+
+  const gameContextValue: GameContextValue = {
+    guesses,
+    currentGuess,
+    gameStatus,
+    isAnimating,
+    toastMessage,
+    rowShakeKey,
+    keyStatuses,
+    onKey,
+  }
 
   // D-12: Auto-open HowToPlay on first visit (run once on mount)
   useEffect(() => {
@@ -101,11 +120,13 @@ function App() {
           </button>
         </div>
       </header>
-      <main className="app__main">
-        <Board />
-        <Keyboard />
-      </main>
-      <Toast />
+      <GameContext.Provider value={gameContextValue}>
+        <main className="app__main">
+          <Board />
+          <Keyboard />
+        </main>
+        <Toast />
+      </GameContext.Provider>
       {activeModal === 'howToPlay' && (
         <HowToPlayModal onClose={closeModal} />
       )}
