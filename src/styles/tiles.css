@@ -499,3 +499,20 @@ html.colorblind {
 .header-icon-btn:hover {
   background: var(--color-surface);
 }
+
+/* Practice mode banner (Phase 5) */
+.practice-banner {
+  width: 100%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+}
+
+.practice-banner__link {
+  color: var(--color-text);
+  text-decoration: underline;
+  margin-left: 0.25rem;
+}
