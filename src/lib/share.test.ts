@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { generateShareText } from './share'
+import { generateShareText, generateWordleShareText } from './share'
 import type { ScoredGuess } from '../types/game'
 
 // Helper: build a ScoredGuess from a pattern string like "CGAPA"
@@ -53,5 +53,31 @@ describe('generateShareText', () => {
     expect(generateShareText(guesses, 0, false)).toContain('Longdle #1 ')
     expect(generateShareText(guesses, 41, false)).toContain('Longdle #42 ')
     expect(generateShareText(guesses, 364, false)).toContain('Longdle #365 ')
+  })
+})
+
+describe('generateWordleShareText (NYT-style /stella)', () => {
+  it('formats header without leading hash and with comma-separated puzzle number', () => {
+    const guesses = [guess('wreck', 'CCCCC')]
+    const result = generateWordleShareText(guesses, 1796, false)
+    expect(result.split('\n')[0]).toBe('Wordle 1,796 1/6')
+  })
+
+  it('uses X/6 on loss', () => {
+    const guesses = Array.from({ length: 6 }, () => guess('aaaaa', 'AAAAA'))
+    const result = generateWordleShareText(guesses, 1795, false)
+    expect(result.split('\n')[0]).toBe('Wordle 1,795 X/6')
+  })
+
+  it('renders a 5-wide emoji grid', () => {
+    const guesses = [guess('dusty', 'APAAC'), guess('wreck', 'CCCCC')]
+    const result = generateWordleShareText(guesses, 1796, false)
+    expect(result).toBe('Wordle 1,796 2/6\n\n⬛🟨⬛⬛🟩\n🟩🟩🟩🟩🟩')
+  })
+
+  it('supports colorblind mode', () => {
+    const guesses = [guess('wreck', 'CCCCC')]
+    const result = generateWordleShareText(guesses, 1796, true)
+    expect(result.split('\n\n')[1]).toBe('🟧🟧🟧🟧🟧')
   })
 })

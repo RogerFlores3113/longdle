@@ -8,6 +8,7 @@ import { useKeyboardListener } from '../hooks/useKeyboardListener'
 import { GameContext } from '../contexts/GameContext'
 import type { GameContextValue } from '../contexts/GameContext'
 import { FIVE_PUZZLES, FIVE_DEFAULT } from '../data/fiveConfig'
+import { generateWordleShareText } from '../lib/share'
 
 export function FiveGame() {
   useKeyboardListener(useFiveGame.getState().onKey)
@@ -36,6 +37,23 @@ export function FiveGame() {
     if (!puzzle) return
     setSelectedPuzzleNumber(num)
     resetWithAnswer(puzzle.answer)
+  }
+
+  // iOS Safari: writeText must be called synchronously after the user gesture.
+  // No `await` before navigator.clipboard.writeText — generate text first, then write.
+  function handleShare() {
+    const { guesses } = useFiveGame.getState()
+    const text = generateWordleShareText(guesses, selectedPuzzleNumber, colorblindMode)
+    const flashToast = (msg: string) => {
+      useFiveGame.setState({ toastMessage: msg })
+      setTimeout(() => useFiveGame.setState({ toastMessage: null }), 1500)
+    }
+    navigator.clipboard.writeText(text)
+      .then(() => flashToast('Copied to clipboard!'))
+      .catch(() => {
+        // Fallback: dump it in a prompt the user can copy from manually
+        window.prompt('Copy your result:', text)
+      })
   }
 
   const gameContextValue: GameContextValue = {
@@ -101,9 +119,16 @@ export function FiveGame() {
             <p style={{ color: 'var(--color-text-muted)', marginBottom: '1rem' }}>
               The word was <strong>{answer.toUpperCase()}</strong>
             </p>
-            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
+            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: '1.25rem' }}>
               Guesses: {guesses.length} / 6
             </p>
+            <button
+              onClick={handleShare}
+              className="stella-share-btn"
+              type="button"
+            >
+              Share
+            </button>
           </div>
         </div>
       )}

@@ -530,6 +530,27 @@ html.colorblind {
   font-weight: 400;
 }
 
+.stella-share-btn {
+  background: var(--color-correct);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: 6px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.stella-share-btn:active {
+  opacity: 0.85;
+  transform: scale(0.97);
+}
+
 .header-icon-btn {
   width: 36px;
   height: 36px;
