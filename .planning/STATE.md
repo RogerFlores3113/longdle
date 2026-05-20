@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-05-04)
 Phase: 4 of 5 (UX Polish) — Complete
 Plan: 2 of 2 in Phase 4 (all complete)
 Status: Ready for Phase 5
-Last activity: 2026-05-06 -- Phase 4 UX Polish complete (color tokens, toast fix, onPointerDown, LA timezone)
+Last activity: 2026-05-19 — Quick task 260519-a1b: mobile keyboard delay fix + /five Wordle route
 
 Progress: [███████░░░] 75%
 
@@ -78,6 +78,12 @@ Recent decisions affecting current work:
 ### Pending Todos
 
 None yet.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260519-a1b | Fix mobile keyboard delay + add /five Wordle route | 2026-05-19 | ec4f415 | [260519-a1b](./quick/260519-a1b-mobile-delay-fix-and-five-route/) |
 
 ### Blockers/Concerns
 
