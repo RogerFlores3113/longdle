@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import type { TileStatus } from '../types/game'
 
 interface TileProps {
@@ -15,7 +16,7 @@ const STATUS_CLASS: Record<TileStatus, string> = {
   absent: 'tile--absent',
 }
 
-export function Tile({ letter, status, flip, flipDelayMs }: TileProps) {
+export const Tile = memo(function Tile({ letter, status, flip, flipDelayMs }: TileProps) {
   const cls = `tile ${STATUS_CLASS[status]}${flip ? ' tile--flip' : ''}`
   const style = flip ? { animationDelay: `${flipDelayMs ?? 0}ms` } : undefined
   return (
@@ -23,4 +24,4 @@ export function Tile({ letter, status, flip, flipDelayMs }: TileProps) {
       {status === 'empty' ? '' : letter}
     </div>
   )
-}
+})

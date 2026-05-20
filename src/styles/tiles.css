@@ -164,6 +164,7 @@ body {
   cursor: pointer;
   user-select: none;
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .key--wide {
@@ -171,8 +172,12 @@ body {
   font-size: 12px;
 }
 
-.key:hover {
-  background: color-mix(in srgb, var(--color-surface) 80%, var(--color-text) 20%);
+/* Hover only on devices that actually have a pointer that hovers.
+   On touch devices, :hover sticks after a tap and blocks subsequent rapid taps. */
+@media (hover: hover) {
+  .key:hover {
+    background: color-mix(in srgb, var(--color-surface) 80%, var(--color-text) 20%);
+  }
 }
 
 .key:active {

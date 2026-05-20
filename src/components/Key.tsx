@@ -1,11 +1,12 @@
+import { memo } from 'react'
 import type { KeyStatus } from '../types/game'
-import { useGameContext } from '../contexts/GameContext'
 
 interface KeyProps {
   label: string
   value: string
   status?: KeyStatus
   wide?: boolean
+  onKey: (key: string) => void
 }
 
 const STATUS_CLASS: Record<KeyStatus, string> = {
@@ -14,8 +15,7 @@ const STATUS_CLASS: Record<KeyStatus, string> = {
   absent: 'key--absent',
 }
 
-export function Key({ label, value, status, wide }: KeyProps) {
-  const { onKey } = useGameContext()
+export const Key = memo(function Key({ label, value, status, wide, onKey }: KeyProps) {
   const cls = ['key']
   if (wide) cls.push('key--wide')
   if (status) cls.push(STATUS_CLASS[status])
@@ -29,4 +29,4 @@ export function Key({ label, value, status, wide }: KeyProps) {
       {label}
     </button>
   )
-}
+})
