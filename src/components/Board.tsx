@@ -4,7 +4,11 @@ import { Row } from './Row'
 
 const MAX_GUESSES = 6
 
-export function Board() {
+interface BoardProps {
+  wordLength?: number
+}
+
+export function Board({ wordLength = 6 }: BoardProps) {
   const { guesses, currentGuess, gameStatus, rowShakeKey, isAnimating } = useGameContext()
 
   // Track which shake-key the active row is on; flip a transient flag for ~350ms
@@ -35,6 +39,7 @@ export function Board() {
           isShaking={false}
           isWinning={i === winningIndex}
           isFlipping={i === guesses.length - 1 && isAnimating}
+          wordLength={wordLength}
         />
       )
     } else if (i === activeIndex) {
@@ -47,6 +52,7 @@ export function Board() {
           isShaking={shaking}
           isWinning={false}
           isFlipping={false}
+          wordLength={wordLength}
         />
       )
     } else {
@@ -59,6 +65,7 @@ export function Board() {
           isShaking={false}
           isWinning={false}
           isFlipping={false}
+          wordLength={wordLength}
         />
       )
     }

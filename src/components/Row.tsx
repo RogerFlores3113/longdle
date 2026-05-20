@@ -8,11 +8,12 @@ interface RowProps {
   isShaking: boolean
   isWinning: boolean
   isFlipping: boolean
+  wordLength?: number
 }
 
-export function Row({ letters, statuses, isActive, isShaking, isWinning, isFlipping }: RowProps) {
+export function Row({ letters, statuses, isActive, isShaking, isWinning, isFlipping, wordLength = 6 }: RowProps) {
   const cells = []
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < wordLength; i++) {
     const letter = letters[i] ?? ''
     let status: TileStatus = statuses[i] ?? 'empty'
     if (isActive && letter && status === 'empty') status = 'active'
