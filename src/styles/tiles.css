@@ -138,6 +138,7 @@ body {
   align-items: center;
   max-width: min(500px, 100vw);
   box-sizing: border-box;
+  touch-action: manipulation; /* prevent 300ms tap delay on mobile browsers */
 }
 
 .keyboard__row {

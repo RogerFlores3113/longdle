@@ -13,6 +13,26 @@ import {
 } from '../lib/storage'
 import type { ScoredGuess, KeyStatus, GameStatus } from '../types/game'
 
+// Debounced storage backend — prevents blocking the main thread on mobile with a
+// synchronous localStorage write on every letter press.
+// Wrapped with createJSONStorage so Zustand gets the correct StorageValue<T> types.
+let _persistDebounceTimer: ReturnType<typeof setTimeout> | null = null
+const debouncedLocalStorage: Storage = {
+  length: 0,
+  clear: () => localStorage.clear(),
+  key: (index: number) => localStorage.key(index),
+  getItem: (name: string) => localStorage.getItem(name),
+  setItem: (name: string, value: string) => {
+    if (_persistDebounceTimer) clearTimeout(_persistDebounceTimer)
+    _persistDebounceTimer = setTimeout(() => {
+      localStorage.setItem(name, value)
+      _persistDebounceTimer = null
+    }, 300)
+  },
+  removeItem: (name: string) => localStorage.removeItem(name),
+}
+const debouncedStorage = createJSONStorage(() => debouncedLocalStorage)
+
 const TOAST_MS = 1500
 const SHAKE_MS = 350
 const FLIP_DURATION_MS = 350
@@ -190,7 +210,7 @@ export const useGame = create<GameState>()(
     }),
     {
       name: GAME_STATE_KEY,
-      storage: createJSONStorage(() => localStorage),
+      storage: debouncedStorage,
       version: SCHEMA_VERSION,
       // D-13: on schema version mismatch, treat as fresh start (return undefined → reset)
       migrate: (_persisted, version) => {
@@ -271,7 +291,7 @@ export const useSettings = create<SettingsState>()(
     }),
     {
       name: SETTINGS_KEY,
-      storage: createJSONStorage(() => localStorage),
+      storage: debouncedStorage,
       version: SCHEMA_VERSION,
       migrate: (_persisted, version) => {
         if (version !== SCHEMA_VERSION) {
