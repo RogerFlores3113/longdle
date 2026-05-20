@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Board } from './Board'
 import { Keyboard } from './Keyboard'
 import { Toast } from './Toast'
@@ -7,10 +7,12 @@ import { useSettings } from '../hooks/useGame'
 import { useKeyboardListener } from '../hooks/useKeyboardListener'
 import { GameContext } from '../contexts/GameContext'
 import type { GameContextValue } from '../contexts/GameContext'
-import { FIVE_PUZZLE_NUMBER } from '../data/fiveConfig'
+import { FIVE_PUZZLES, FIVE_DEFAULT } from '../data/fiveConfig'
 
 export function FiveGame() {
   useKeyboardListener(useFiveGame.getState().onKey)
+
+  const [selectedPuzzleNumber, setSelectedPuzzleNumber] = useState(FIVE_DEFAULT.puzzleNumber)
 
   const guesses = useFiveGame((s) => s.guesses)
   const currentGuess = useFiveGame((s) => s.currentGuess)
@@ -21,11 +23,20 @@ export function FiveGame() {
   const keyStatuses = useFiveGame((s) => s.keyStatuses)
   const onKey = useFiveGame((s) => s.onKey)
   const answer = useFiveGame((s) => s.answer)
+  const resetWithAnswer = useFiveGame((s) => s.resetWithAnswer)
   const { colorblindMode } = useSettings()
 
   useEffect(() => {
     document.documentElement.classList.toggle('colorblind', colorblindMode)
   }, [colorblindMode])
+
+  function handlePuzzleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const num = Number(e.target.value)
+    const puzzle = FIVE_PUZZLES.find((p) => p.puzzleNumber === num)
+    if (!puzzle) return
+    setSelectedPuzzleNumber(num)
+    resetWithAnswer(puzzle.answer)
+  }
 
   const gameContextValue: GameContextValue = {
     guesses,
@@ -41,9 +52,20 @@ export function FiveGame() {
   return (
     <div className="app">
       <header className="app__header">
-        <span className="app__header-title">
-          Wordle <span className="app__header-puzzle-num">#{FIVE_PUZZLE_NUMBER}</span>
-        </span>
+        <div className="app__header-left" />
+        <select
+          value={selectedPuzzleNumber}
+          onChange={handlePuzzleChange}
+          className="stella-puzzle-select"
+          aria-label="Select puzzle"
+        >
+          {[...FIVE_PUZZLES].reverse().map((p) => (
+            <option key={p.puzzleNumber} value={p.puzzleNumber}>
+              Wordle #{p.puzzleNumber}
+            </option>
+          ))}
+        </select>
+        <div className="app__header-right" />
       </header>
       <GameContext.Provider value={gameContextValue}>
         <main className="app__main">
@@ -74,7 +96,7 @@ export function FiveGame() {
             }}
           >
             <p style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-              {gameStatus === 'won' ? 'You got it!' : 'Better luck tomorrow!'}
+              {gameStatus === 'won' ? 'You got it! 🎉' : 'Better luck tomorrow!'}
             </p>
             <p style={{ color: 'var(--color-text-muted)', marginBottom: '1rem' }}>
               The word was <strong>{answer.toUpperCase()}</strong>

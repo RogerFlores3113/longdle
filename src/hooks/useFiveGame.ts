@@ -1,11 +1,10 @@
 import { create } from 'zustand'
 import { scoreTiles } from '../lib/scoring'
 import { FIVE_VALID_WORDS } from '../data/fiveWords'
-import { FIVE_ANSWER } from '../data/fiveConfig'
+import { FIVE_DEFAULT } from '../data/fiveConfig'
 import { upgradeKeyStatus, showToast, triggerShake } from '../lib/gameCore'
 import type { ScoredGuess, KeyStatus, GameStatus } from '../types/game'
 
-export { FIVE_ANSWER }
 
 const TOAST_MS = 1500
 const SHAKE_MS = 350
@@ -26,6 +25,7 @@ export interface FiveGameState {
   rowShakeKey: number
   keyStatuses: Record<string, KeyStatus>
   onKey: (key: string) => void
+  resetWithAnswer: (answer: string) => void
 }
 
 // Private timer refs — separate from other stores (Pitfall 4)
@@ -42,7 +42,7 @@ if (import.meta.hot) {
 }
 
 export const useFiveGame = create<FiveGameState>()((set, get) => ({
-  answer: FIVE_ANSWER,
+  answer: FIVE_DEFAULT.answer,
   guesses: [],
   currentGuess: '',
   gameStatus: 'playing' as GameStatus,
@@ -120,6 +120,22 @@ export const useFiveGame = create<FiveGameState>()((set, get) => ({
         set({ currentGuess: s.currentGuess + lower })
       }
     }
+  },
+
+  resetWithAnswer: (answer: string) => {
+    if (fiveToastTimerRef.current) clearTimeout(fiveToastTimerRef.current)
+    if (fiveShakeTimerRef.current) clearTimeout(fiveShakeTimerRef.current)
+    if (fiveFlipTimer) { clearTimeout(fiveFlipTimer); fiveFlipTimer = null }
+    set({
+      answer,
+      guesses: [],
+      currentGuess: '',
+      gameStatus: 'playing' as GameStatus,
+      isAnimating: false,
+      toastMessage: null,
+      rowShakeKey: 0,
+      keyStatuses: {},
+    })
   },
 }))
 

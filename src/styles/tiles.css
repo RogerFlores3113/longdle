@@ -499,6 +499,32 @@ html.colorblind {
   margin-left: 2px;
 }
 
+.stella-puzzle-select {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  text-align: center;
+  outline: none;
+}
+
+.stella-puzzle-select:hover {
+  background: var(--color-surface);
+}
+
+.stella-puzzle-select option {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 400;
+}
+
 .header-icon-btn {
   width: 36px;
   height: 36px;
