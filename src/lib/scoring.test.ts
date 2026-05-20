@@ -39,11 +39,17 @@ describe('scoreTiles', () => {
     )
   })
 
-  it('throws if guess is not 6 letters', () => {
+  it('throws when guess and answer lengths differ', () => {
     expect(() => scoreTiles('abc', 'planet')).toThrow()
+    expect(() => scoreTiles('planet', 'abc')).toThrow()
   })
 
-  it('throws if answer is not 6 letters', () => {
-    expect(() => scoreTiles('planet', 'abc')).toThrow()
+  it('works for 5-letter strings (Wordle clone at /stella)', () => {
+    expect(scoreTiles('wreck', 'wreck')).toEqual(
+      ['correct', 'correct', 'correct', 'correct', 'correct']
+    )
+    expect(scoreTiles('dusty', 'wreck')).toEqual(
+      ['absent', 'absent', 'absent', 'absent', 'absent']
+    )
   })
 })

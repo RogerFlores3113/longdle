@@ -1,18 +1,19 @@
 export type TileStatus = 'empty' | 'active' | 'correct' | 'present' | 'absent'
 
 export function scoreTiles(guess: string, answer: string): TileStatus[] {
-  if (guess.length !== 6 || answer.length !== 6) {
-    throw new Error('scoreTiles requires 6-letter strings')
+  if (guess.length !== answer.length) {
+    throw new Error('scoreTiles requires guess and answer of equal length')
   }
-  const result: TileStatus[] = new Array(6).fill('absent')
+  const n = guess.length
+  const result: TileStatus[] = new Array(n).fill('absent')
   const answerLetters = answer.split('')
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < n; i++) {
     if (guess[i] === answerLetters[i]) {
       result[i] = 'correct'
       answerLetters[i] = '#'
     }
   }
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < n; i++) {
     if (result[i] === 'correct') continue
     const idx = answerLetters.indexOf(guess[i])
     if (idx !== -1) {
