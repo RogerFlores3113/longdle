@@ -13,7 +13,8 @@ export const FIVE_PUZZLES: readonly FivePuzzle[] = [
   { puzzleNumber: 1799, answer: 'chuck' },
   { puzzleNumber: 1800, answer: 'niece' },
   { puzzleNumber: 1801, answer: 'visit' },
-  { puzzleNumber: 1801, answer: 'couch' },
+  { puzzleNumber: 1802, answer: 'couch' },
+  { puzzleNumber: 1803, answer: 'study' },
 
 ]
 
